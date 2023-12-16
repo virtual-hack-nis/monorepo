@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, FormControl, FormLabel, Input, VStack, Heading, FormHelperText, Flex } from "@chakra-ui/react";
+import { Box, Button, FormControl, Input, VStack, Heading, FormHelperText, Flex } from "@chakra-ui/react";
 import { supabase } from '../../lib/supabase';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from "@chakra-ui/react";
 
-export default function Register() {
+export default function Login() {
   const [taxiCardNumber, setTaxiCardNumber] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [promoCode, setPromoCode] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  /** Other hooks */
   const navigate = useNavigate();
   const toast = useToast();
 
@@ -33,8 +31,8 @@ export default function Register() {
 
     if (!taxiCardNumberPattern.test(taxiCardNumberWithoutSpaces)) {
       toast({
-        title: "Greška pri unosu",
-        description: "Pogrešan format broja taksi kartice",
+        title: "Login Error",
+        description: "Invalid taxi card number format",
         status: "error",
         duration: 5000,
         isClosable: true,
@@ -46,8 +44,8 @@ export default function Register() {
 
     if (!phoneNumberPattern.test(phoneNumberWithoutSpaces)) {
       toast({
-        title: "Greška pri unosu",
-        description: "Pogrešan format broja telefona",
+        title: "Login Error",
+        description: "Invalid phone number format",
         status: "error",
         duration: 5000,
         isClosable: true,
@@ -60,17 +58,14 @@ export default function Register() {
     try {
       const { data, error } = await supabase
         .from('taxi_users')
-        .insert({
-          taxi_card_number: taxiCardNumber,
-          phone_number: phoneNumber,
-          promo_code: promoCode
-        });
+        .select('*')
+        .eq('taxi_card_number', taxiCardNumber)
+        .eq('phone_number', phoneNumber);
 
-      if (error) {
-        console.error('Error inserting data:', error);
+      if (error || data.length === 0) {
         toast({
-          title: "Greška pri unosu",
-          description: "Došlo je do greške prilikom unosa podataka",
+          title: "Login Error",
+          description: "Invalid login credentials",
           status: "error",
           duration: 5000,
           isClosable: true,
@@ -81,12 +76,11 @@ export default function Register() {
       } 
 
       localStorage.setItem('taxiCardNumber', taxiCardNumber);
-      localStorage.setItem('promoCode', promoCode);
 
       navigate('/home');
       toast({
-        title: "Uspešna registracija",
-        description: "Uspešno ste se registrovali",
+        title: "Successful Login",
+        description: "You have successfully logged in",
         status: "success",
         duration: 5000,
         isClosable: true,
@@ -102,9 +96,8 @@ export default function Register() {
     <Flex minHeight="100vh" alignItems="center" justifyContent="center" backgroundColor={'#2F3432'}>
       <Box bg="white" p={50} borderRadius="md" boxShadow="md" backgroundColor={'#F8F8FF'}>
         <VStack as="form" onSubmit={handleSubmit} spacing={6}>
-          <Heading as="h1" size="xl" fontWeight={'bold'} letterSpacing={-1}>REGISTRACIJA</Heading>
+          <Heading as="h1" size="xl" fontWeight={'bold'} letterSpacing={-1}>PRIJAVA</Heading>
           <FormControl isRequired>
-            {/* <FormLabel>Broj taksi kartice</FormLabel> */}
             <Input
               type="text"
               value={taxiCardNumber}
@@ -112,10 +105,9 @@ export default function Register() {
               placeholder="1234 5678"
               backgroundColor={'#D9D9D9'}
             />
-            <FormHelperText>*Broj taksi kartice</FormHelperText>
+            <FormHelperText>*Broj taxi kartice</FormHelperText>
           </FormControl>
           <FormControl isRequired>
-            {/* <FormLabel>Broj Telefona</FormLabel> */}
             <Input
               type="tel"
               value={phoneNumber}
@@ -124,17 +116,6 @@ export default function Register() {
               backgroundColor={'#D9D9D9'}
             />
             <FormHelperText>*Broj telefona</FormHelperText>
-          </FormControl>
-          <FormControl>
-            {/* <FormLabel>Promo kod</FormLabel> */}
-            <Input
-              type="text"
-              value={promoCode}
-              onChange={(e) => setPromoCode(e.target.value)}
-              placeholder="Unesite promo kod"
-              backgroundColor='rgba(246, 183, 20, 0.5)'
-            />
-            <FormHelperText>Promotivni kod</FormHelperText>
           </FormControl>
           <Button
             type="submit"
@@ -147,10 +128,10 @@ export default function Register() {
             w={'60%'}
             marginTop={5}
           >
-            Potvrdi
+            Login
           </Button>
           <Button>
-            <a href="/login">Prijava</a>
+            <a href="/register">Registracija</a>
           </Button>
         </VStack>
       </Box>
