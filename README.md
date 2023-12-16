@@ -18,7 +18,11 @@ Team:
 
 We decided to go with the Javascript & derivatives in order to move quickly as time is limited. Supabase, backend as a service, really helped us out, although we're not managing it properly. React was the choice for frontend. We avoided using Typescript as the idea & value prop behind the hackathon idea changed often.
 
-## Instructions
+## Instructions & Requirements
+
+### Requirements
+
+Node.js LTS/Hydrogen and Yarn version berry
 
 ### Installing the project
 
@@ -62,9 +66,10 @@ Currently we're planning on using the following packages within our monorepo:
 - docs - this package will contain docusaurus documentation about the endpoints and such
 - visualizer - visualization service, you can check it out [here](https://github.com/zernonia/supabase-schema), kudos to the guy. Used for visualizing the database schemas.
 
-## Versioning the monorepo
+# TODOs
 
-Semantic versioning
+- [ ] - add realtime subscription to the points
+
 
 ## Branch structure during the Hackathon
 - master - this branch will contain the LTS version of the project. Luka shall manage the pull requests and merges
