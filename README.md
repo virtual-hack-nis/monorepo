@@ -1,6 +1,6 @@
 # NIS Virtual Hack 2023
 
-(Link to the github repo)[https://github.com/virtual-hack-nis/monorepo.git]
+[Link to the github repo](https://github.com/virtual-hack-nis/monorepo.git)
 
 ## Brief Description - Idea & Technologies 
 
