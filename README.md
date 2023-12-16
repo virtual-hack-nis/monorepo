@@ -18,7 +18,11 @@ Team:
 
 We decided to go with the Javascript & derivatives in order to move quickly as time is limited. Supabase, backend as a service, really helped us out, although we're not managing it properly. React was the choice for frontend. We avoided using Typescript as the idea & value prop behind the hackathon idea changed often.
 
-## Instructions
+## Instructions & Requirements
+
+### Requirements
+
+Node.js LTS/Hydrogen and Yarn version berry
 
 ### Installing the project
 
