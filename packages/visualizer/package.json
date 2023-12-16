@@ -1,0 +1,42 @@
+{
+  "name": "supabase-schema",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vue-tsc --noEmit",
+    "serve": "vite preview",
+    "vc": "vercel dev"
+  },
+  "dependencies": {
+    "@viselect/vue": "^3.2.6",
+    "@vueuse/core": "^9.13.0",
+    "crypto-js": "^4.1.1",
+    "eventsource-parser": "^1.0.0",
+    "highlight.js": "^11.7.0",
+    "html-to-image": "^1.11.11",
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@iconify/json": "^2.2.46",
+    "@types/crypto-js": "^4.1.1",
+    "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
+    "@vitejs/plugin-vue": "^4.1.0",
+    "@vue/compiler-sfc": "^3.2.47",
+    "@vue/eslint-config-typescript": "^11.0.2",
+    "eslint": "^8.37.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-vue": "^9.10.0",
+    "prettier": "^2.8.7",
+    "unplugin-icons": "^0.16.1",
+    "unplugin-vue-components": "^0.24.1",
+    "unplugin-vue-router": "^0.5.4",
+    "vite": "^4.2.1",
+    "vite-plugin-windicss": "^1.8.10",
+    "vue-tsc": "^1.2.0",
+    "windicss": "^3.5.6"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "supabase",
+  "packageManager": "yarn@4.0.2",
+  "dependencies": {
+    "supabase": "1.123.4"
+  },
+  "scripts": {
+    "start" : "npx supabase start",
+    "stop" : "npx supabase stop"
+  }
+}
