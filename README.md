@@ -4,7 +4,9 @@
 
 ## Brief Description - Idea & Technologies 
 
-### System
+### General Idea 
+
+![image](https://github.com/virtual-hack-nis/monorepo/assets/88193583/e6e0e24e-38c1-4706-afdd-6a92b6d3f377)
 
 ### Description
 
