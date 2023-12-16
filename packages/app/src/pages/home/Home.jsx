@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Box, Button, Center, Heading, VStack, Flex } from '@chakra-ui/react';
 import {supabase} from '../../lib/supabase'
+import QRCode from 'qrcode.react';
+import TopBar from '../../components/Topbar';
 
 function Home() {
-  const [points, setPoints] = useState(0);
+  const [userData, setUserData] = useState({});
   const taxiCardNumber = localStorage.getItem('taxiCardNumber');
 
   useEffect(() => {
@@ -10,7 +13,7 @@ function Home() {
       try {
         const { data, error } = await supabase
           .from('taxi_users')
-          .select('points')
+          .select('*')
           .eq('taxi_card_number', taxiCardNumber)
           .single();
 
@@ -19,7 +22,7 @@ function Home() {
           return;
         }
 
-        setPoints(data.points);
+        setUserData(data);
       } catch (error) {
         console.error('Unexpected error:', error);
       }
@@ -30,17 +33,19 @@ function Home() {
 
   const handleLogout = () => {
     localStorage.clear();
-    // Redirect to login page or refresh the page to reflect the changes
     window.location.reload();
   };
 
   return (
-    <div>
-      <h1>Welcome to the Home Page!</h1>
-      <p>Your taxi card number is: {taxiCardNumber}</p>
-      <p>Your points are: {points}</p>
-      <button onClick={handleLogout}>Logout</button>
-    </div>
+    <>
+      <Flex alignItems={'center'} flexDirection={'column'}>
+        <TopBar taxiCardNumber={userData.taxi_card_number} referralCode={userData.referral_code} />
+        <Button colorScheme="red" onClick={handleLogout}>Logout</Button>
+        <QRCode value={userData.taxi_card_number} size={256} />
+        <Heading>Moji Poeni: {userData.points}</Heading>
+        <Button colorScheme="blue" onClick={() => alert('Share functionality not implemented yet.')}>Podeli</Button>
+      </Flex>
+    </>
   );
 }
 

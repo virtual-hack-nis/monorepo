@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-route
 
 import { supabase } from './lib/supabase';
 import { PrivateRoute } from './routing/PrivateRoute';
+import Layout from './components/Layout';
 
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
@@ -20,7 +21,9 @@ export default function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={
           <PrivateRoute>
-            <Home />
+            <Layout>
+              <Home />
+            </Layout>
           </PrivateRoute>
         } />
       </Routes>
