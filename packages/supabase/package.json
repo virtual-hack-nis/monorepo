@@ -5,7 +5,7 @@
     "supabase": "1.123.4"
   },
   "scripts": {
-    "start" : "npx supabase start",
-    "stop" : "npx supabase stop"
+    "start": "npx supabase start",
+    "stop": "npx supabase stop"
   }
 }
